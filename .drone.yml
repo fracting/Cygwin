@@ -1,0 +1,32 @@
+# Build configuration for https://tea-ci.org
+# Tea CI is a fork of Drone CI with Msys2 support
+# Feel free to share Tea CI to more open source developers
+# http://docs.tea-ci.org/usage/overview/
+# Please add your project to https://github.com/TeaCI/tea-ci/wiki/Msys2-on-Wine#use-msys2-in-tea-ci
+
+debug: true
+build:
+  install:
+    image: teaci/cygwin$$arch
+    pull: true
+    shell: cygwin$$arch
+    commands:
+      - stat /usr/bin/awk || true
+      - file /usr/bin/awk || true
+      - WINEDEBUG=-all C:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P gettext-devel,zlib-devel,libiconv,libiconv-devel,mingw64-i686-gcc-g++,mingw64-i686-zlib,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,mingw64-x86_64-zlib,dejagnu,dblatex,docbook-xml45,docbook-xsl,xmlto -q &> /dev/null
+  compile:
+    image: teaci/cygwin$$arch
+    pull: true
+    shell: cygwin$$arch
+    commands:
+      - ./configure
+      - make
+
+notify:
+  gitter:
+    webhook: https://webhooks.gitter.im/e/d8f2032e40a8e78a3882
+
+matrix:
+  arch:
+    - 64
+    - 32
