@@ -5,8 +5,8 @@
 
 debug: true
 
-pipeline:
-  build:
+build:
+  compile:
     image: teaci/cygwin$$arch
     pull: true
     shell: cygwin$$arch
@@ -21,7 +21,7 @@ pipeline:
       - make
       - make install
 
-  upgrade:
+  install:
     image: teaci/cygwin$$arch
     pull: true
     shell: cygwin$$arch
