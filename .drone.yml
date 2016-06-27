@@ -13,8 +13,8 @@ build:
     commands:
       - C:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P gettext-devel,zlib-devel,libiconv,libiconv-devel,mingw64-i686-gcc-g++,mingw64-i686-zlib,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,mingw64-x86_64-zlib,dejagnu,dblatex,docbook-xml45,docbook-xsl,xmlto -q &> /dev/null
       - srcdir=`pwd`
-      - builddir=/oss/build-stage2
-      - installdir=/oss/install-stage2
+      - builddir=/oss/build-stage1
+      - installdir=/oss/install-stage1
       - mkdir -p ${builddir} ${installdir}
       - cd ${builddir}
       - ${srcdir}/configure --prefix=${installdir} -v
