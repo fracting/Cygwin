@@ -20,14 +20,8 @@ build:
       - ${srcdir}/configure --prefix=${installdir} -v
       - make
       - make install
-
-  install:
-    image: teaci/cygwin$$arch
-    pull: true
-    shell: cygwin$$arch
-    commands:
-      - sha1sum /oss/install-stage1/bin/cygwin1.dll /bin/cygwin1.dll
-      - cp -vf /oss/install-stage1/cygwin/winsup/cygwin/cygwin1.dll /bin/cygwin1.dll
+      - sha1sum ${installdir}/bin/cygwin1.dll /bin/cygwin1.dll
+      - cp -vf ${installdir}/bin/cygwin1.dll /bin/cygwin1.dll
 
   test:
     image: teaci/cygwin$$arch
