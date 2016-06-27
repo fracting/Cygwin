@@ -15,7 +15,7 @@ build:
       - srcdir=`pwd`
       - builddir=/oss/build-stage2
       - installdir=/oss/install-stage2
-      - mkdir ${builddir} ${installdir}
+      - mkdir -p ${builddir} ${installdir}
       - cd ${builddir}
       - ${srcdir}/configure --prefix=${installdir} -v
       - make
@@ -38,7 +38,7 @@ build:
       - srcdir=`pwd`
       - builddir=/oss/build-stage2
       - installdir=/oss/install-stage2
-      - mkdir ${builddir} ${installdir}
+      - mkdir -p ${builddir} ${installdir}
       - cd ${builddir}
       - ${srcdir}/configure --prefix=${installdir} -v
       - make
