@@ -6,7 +6,7 @@
 debug: true
 
 build:
-  compile:
+  stage1:
     image: teaci/cygwin$$arch
     pull: true
     shell: cygwin$$arch
@@ -26,17 +26,11 @@ build:
   test:
     image: teaci/cygwin$$arch
     pull: true
-    shell: cygwin$$arch
+    shell: /bin/bash # Call from Linux native shell, which is a special bonus of Tea CI.
     commands:
-      - sha1sum /bin/cygwin1.dll
-      - srcdir=`pwd`
-      - builddir=/oss/build-stage2
-      - installdir=/oss/install-stage2
-      - mkdir -p ${builddir} ${installdir}
-      - cd ${builddir}
-      - ${srcdir}/configure --prefix=${installdir} -v
-      - make
-      - make install
+      # In the worst case, new cygwin1.dll might fail to start with exit status 0, which fools the CI as status success. the following test does not rely on cygwin exit status, instead we trust Linux grep result.
+      - cygwin$$arch -c "uname -a" | grep CYGWIN_NT
+      - cygwin$$arch -c "id" | grep uid
 
 matrix:
   arch:
