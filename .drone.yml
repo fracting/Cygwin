@@ -18,7 +18,11 @@ build:
       - wget http://cygwin.com/${setup}
       - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cygcheck-dep -q &> /dev/null
       - cygcheck-dep -N python
+      - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -x asciidoc,dblatex,gdb,gettext-devel,git,intltool,python-beautifulsoup,python-cffi,python-chardet,python-docutils,python-imaging,python-jinja2,python-libxml2,python-libxslt,python-lxml,python-markupsafe,python-numpy,python-ply,python-pycparser,python-pygments,python-setuptools,python-simplejson,python-sphinx,scons,texlive-collection-binextra,texlive-collection-latexextra,texlive-collection-mathextra,texlive-collection-pictures,xmlto -q &> /dev/null
+      - ls /usr/bin/python* || true
       - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P gettext-devel,zlib-devel,libiconv,libiconv-devel,mingw64-i686-gcc-g++,mingw64-i686-zlib,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,mingw64-x86_64-zlib,dejagnu,dblatex,docbook-xml45,docbook-xsl,docbook2X,xmlto -q &> /dev/null
+      - ls /usr/bin/python* || true
+      - file /usr/bin/python* || true
       - srcdir=`pwd`
       - builddir=/oss/build-stage1
       - installdir=/oss/install-stage1
